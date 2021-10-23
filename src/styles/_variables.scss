@@ -1,0 +1,21 @@
+$safe-margin: 3%;
+$max-content-width: 1200px;
+$header-height: 80px;
+
+// BS5 Breakpoints (min-width)
+$breakpoint-xs: 575px; // (max width)
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1400px;
+
+$black: #303030;
+$palewhite: #f5f6fa;
+$primary-red: #e94040;
+$secondary-red: #b12e2e;
+
+.minimum-touch-area {
+  min-height: 44px;
+  min-width: 44px;
+}

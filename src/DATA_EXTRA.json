@@ -1,0 +1,100 @@
+{
+  "restaurants": [
+    {
+      "id": "1s0x2e68e68b3b478181",
+      "name": "Monsoon Coffee & Cowork",
+      "description": "Monsoon Cafe is not just to dine but also to get inspiration. A place where you can relax, enjoy your coffee and lunch ~ Yuk tunggu apalagi, buruan dateng ke Monsoon Cafe ajak teman-teman kamu juga ya. Kami tunggu 🥳",
+      "pictureId": "/images/restaurant/monsoon-coffee-cowork.jpg",
+      "city": "Bandung",
+      "rating": 4.4
+    },
+    {
+      "id": "1s0x2e68e7cbe5acba15",
+      "name": "Bober Cafe",
+      "description": "Tempat ramai yang menjual kopi, masakan Indonesia & Eropa, dengan musik live & acara lainnya.",
+      "pictureId": "/images/restaurant/bober-cafe.jpg",
+      "city": "Bandung",
+      "rating": 4.2
+    },
+    {
+      "id": "1s0x2e68e650e167c1ab",
+      "name": "One Eighty Coffee and Music",
+      "description": "Spacious cafe with industrial-chic interiors plus garden seating, serving pizza & Indonesian dishes.",
+      "pictureId": "/images/restaurant/one-eighty-coffee-music.jpg",
+      "city": "Bandung",
+      "rating": 4.6
+    },
+    {
+      "id": "1s0x2e68e6dd519363ff",
+      "name": "Kalpa Tree Dine and Chill",
+      "description": "Airy, stylish international restaurant with glass walls, plants & wine, plus a pool & garden.",
+      "pictureId": "/images/restaurant/kalpa-tree.jpg",
+      "city": "Bandung",
+      "rating": 4.4
+    },
+    {
+      "id": "1s0x2e69f6c301437d55",
+      "name": "Rocky Rooster Binus",
+      "description": "Ayam Legend Kesayangan mahasiswa Sunib. Modest fast-food option for American-style fried chicken & fries in no-frills surrounds.",
+      "pictureId": "/images/restaurant/ayam-rocky-binus.jpg",
+      "city": "Jakarta",
+      "rating": 5.0
+    },
+    {
+      "id": "1s0x2e6a1dff154fd569",
+      "name": "Subway Cilandak Town Square",
+      "description": "Elegant, colonial-era room with high ceilings for creative Indonesian cuisine, coffees & cocktails.",
+      "pictureId": "/images/restaurant/subway-citos.jpg",
+      "city": "Jakarta",
+      "rating": 4.8
+    },
+    {
+      "id": "1s0x2e68e649a5e8828f",
+      "name": "Kue Cubit Asiong",
+      "description": "Kue Cubit terkenal di Bandung Raya, terletak di seberang Sekolah Santo Aloysius.",
+      "pictureId": "/images/restaurant/asiong.jpg",
+      "city": "Bandung",
+      "rating": 4.6
+    },
+    {
+      "id": "1s0x2dd246b99a2b95d5",
+      "name": "Sky Garden Bali",
+      "description": "Tempat makan buffet dengan nuansa Klab malam yg menyajikan live DJ dari berbagai negara. Memiliki 3 lantai dgn atmosfir dan musik yg berbeda.",
+      "pictureId": "/images/restaurant/skygarden-bali.jpg",
+      "city": "Bali",
+      "rating": 4.3
+    },
+    {
+      "id": "1s0x2dd25ae30a637d47",
+      "name": "OMNIA Bali",
+      "description": "Anda dapat mengunjungi Omnia Beach Club Bali, salah satu tempat mewah dan fantastis untuk bersantai hingga bersenang-senang dengan orang terdekat.",
+      "pictureId": "/images/restaurant/omnia-dayclub-uluwatu-bali.jpg",
+      "city": "Bali",
+      "rating": 4.5
+    },
+    {
+      "id": "1s0x2dd24711ff4b76fd",
+      "name": "Potato Head Beach Club",
+      "description": "Tempat trendi tepi pantai yang menawarkan infinity pool, serta hidangan internasional, beer & koktail.",
+      "pictureId": "/images/restaurant/potato-head-beach-club.jpg",
+      "city": "Bali",
+      "rating": 4.6
+    },
+    {
+      "id": "1s0x2dd2470dd8749eab",
+      "name": "Mrs Sippy Bali",
+      "description": "Kelab pantai luas dengan kolam renang air laut & restoran elegan yang menyajikan seafood, steak & koktail.",
+      "pictureId": "/images/restaurant/mrs-sippy-bali.jpg",
+      "city": "Bali",
+      "rating": 4.4
+    },
+    {
+      "id": "1s0x2e68e6ee8df3e72f",
+      "name": "Warung Gemboel",
+      "description": "Warkop yang juga sudah banyak dikenal orang banyak di daerah sekitaran UNPAR Bandung.",
+      "pictureId": "/images/restaurant/warung-gemboel.jpg",
+      "city": "Bandung",
+      "rating": 4.4
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+@import "_variables.scss";
+
+@mixin getXSafePad($property, $y) {
+  #{$property}: $y 3%;
+  @media screen and (min-width: $breakpoint-md) {
+    #{$property}: $y 5%;
+  }
+}
+
+@mixin breakpoint-min($size) {
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
