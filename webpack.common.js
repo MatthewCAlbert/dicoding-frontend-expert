@@ -4,11 +4,21 @@ const path = require("path");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const ASSET_PATH = process.env.ASSET_PATH || "/";
+
 module.exports = {
-  entry: path.resolve(__dirname, "src/app.js"),
+  entry: {
+    app: path.resolve(__dirname, 'src/scripts/index.js'),
+    'service-worker': { 
+      import: path.resolve(__dirname, 'src/scripts/sw.js'), 
+      filename: "sw.js" 
+    },
+  },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist", ASSET_PATH === "/" ? "" : ASSET_PATH),
+    filename: "static/chunks/[name].[contenthash].js",
+    chunkFilename: "static/chunks/[id].[contenthash].js",
+    publicPath: ASSET_PATH,
   },
   module: {
     rules: [

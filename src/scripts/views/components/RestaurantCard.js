@@ -1,4 +1,4 @@
-import { reduceString, roundToPrecision } from '../utils/utils';
+import { reduceString, roundToPrecision } from '../../utils/utils';
 
 class RestaurantCard extends HTMLElement {
   constructor() {

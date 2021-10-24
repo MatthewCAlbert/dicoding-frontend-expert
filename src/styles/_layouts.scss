@@ -9,7 +9,7 @@ select {
   @extend .minimum-touch-area;
 }
 
-app-layout {
+.app-layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -1,5 +1,5 @@
-import data from '../DATA.json';
-import dataExtra from '../DATA_EXTRA.json';
+import data from '../../../DATA.json';
+import dataExtra from '../../../DATA_EXTRA.json';
 
 class LandingContent extends HTMLElement {
   constructor() {

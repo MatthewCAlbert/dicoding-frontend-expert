@@ -5,3 +5,6 @@
 
 ## Notice
 - Food switcher is not working yet (reserved for later submission).
+
+## Helper
+- Manifest Icon https://manifest-gen.netlify.app/
