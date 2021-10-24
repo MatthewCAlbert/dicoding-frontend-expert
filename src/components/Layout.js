@@ -13,38 +13,38 @@ class Layout extends HTMLElement {
   setMobileNav(open) {
     this._navOpened = open;
     if (open) {
-      this._header.classList.add("scrolled");
-      this._navMenu.classList.add("active");
-      document.body.style.overflow = "hidden";
+      this._header.classList.add('scrolled');
+      this._navMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
     } else {
-      this._navMenu.classList.remove("active");
-      document.body.style.overflow = "unset";
-      if (!(this._bodyScrolled > 80)) this._header.classList.remove("scrolled");
+      this._navMenu.classList.remove('active');
+      document.body.style.overflow = 'unset';
+      if (!(this._bodyScrolled > 80)) this._header.classList.remove('scrolled');
     }
   }
 
   hook() {
-    this._navMenu = this.querySelector(".nav-wrapper");
-    this._header = this.querySelector(".header");
-    window.addEventListener("resize", () => {
+    this._navMenu = this.querySelector('.nav-wrapper');
+    this._header = this.querySelector('.header');
+    window.addEventListener('resize', () => {
       if (document.body.clientWidth >= 576 && this._navOpened) {
         this.setMobileNav(false);
       }
     });
-    window.addEventListener("scroll", (e) => {
+    window.addEventListener('scroll', (e) => {
       this._bodyScrolled = document.documentElement.scrollTop;
       if (this._bodyScrolled > 80) {
-        this._header.classList.add("scrolled");
+        this._header.classList.add('scrolled');
       } else if (!this._navOpened) {
-        this._header.classList.remove("scrolled");
+        this._header.classList.remove('scrolled');
       }
     });
-    this.querySelector(".mobile-nav-toggler").addEventListener("click", () => {
+    this.querySelector('.mobile-nav-toggler').addEventListener('click', () => {
       this.setMobileNav(!this._navOpened);
     });
 
-    this.querySelector(".scroll-up-btn").addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    this.querySelector('.scroll-up-btn').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
@@ -85,4 +85,4 @@ class Layout extends HTMLElement {
   }
 }
 
-customElements.define("app-layout", Layout);
+customElements.define('app-layout', Layout);

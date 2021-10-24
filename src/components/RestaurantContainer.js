@@ -21,15 +21,15 @@ class RestaurantContainer extends HTMLElement {
       </div>
       <div class="restaurant-items-container">
         ${this._data
-          ?.map(
-            (el) => `
+    ?.map(
+      (el) => `
             <restaurant-card data-id="${el?.id}" title="${el?.name}" rating="${el?.rating}" img="${el?.pictureId}" location="${el?.city}">${el?.description}</restaurant-card>
-          `
-          )
-          .join("")}
+          `,
+    )
+    .join('')}
       </div>
     `;
   }
 }
 
-customElements.define("restaurant-container", RestaurantContainer);
+customElements.define('restaurant-container', RestaurantContainer);

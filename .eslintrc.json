@@ -12,5 +12,9 @@
         "sourceType": "module"
     },
     "rules": {
+        "no-console":"off",
+        "no-underscore-dangle":"off",
+        "no-useless-constructor":"off",
+        "no-unused-vars":"off"
     }
 }

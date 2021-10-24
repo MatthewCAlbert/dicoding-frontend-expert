@@ -1,5 +1,5 @@
-import data from "../DATA.json";
-import dataExtra from "../DATA_EXTRA.json";
+import data from '../DATA.json';
+import dataExtra from '../DATA_EXTRA.json';
 
 class LandingContent extends HTMLElement {
   constructor() {
@@ -9,17 +9,16 @@ class LandingContent extends HTMLElement {
   connectedCallback() {
     this._content = this.innerHTML;
     this._searchTarget = 0;
-    this.classList.add("main-container");
+    this.classList.add('main-container');
     this._restaurantData = [...data?.restaurants, ...dataExtra?.restaurants];
     this._filteredData = this._restaurantData;
     this._availableCity = [];
     this._query = {
-      value: "",
-      city: "",
+      value: '',
+      city: '',
     };
     this._restaurantData?.forEach((el) => {
-      if (!this._availableCity.includes(el?.city))
-        this._availableCity.push(el?.city);
+      if (!this._availableCity.includes(el?.city)) { this._availableCity.push(el?.city); }
     });
     this._availableCity.sort();
 
@@ -29,51 +28,50 @@ class LandingContent extends HTMLElement {
   switchTarget(index) {
     this._searchTarget = index;
     this.querySelector(
-      ".searchbar-category-selector .btn-bg"
+      '.searchbar-category-selector .btn-bg',
     ).style.transform = `translateX(${index * 120}px)`;
     this._catSelector?.forEach((el, id) => {
-      if (index !== id) el.classList.remove("active");
-      else el.classList.add("active");
+      if (index !== id) el.classList.remove('active');
+      else el.classList.add('active');
     });
   }
 
   queryListener(q) {
     this._query = { ...this._query, ...q };
     this._filteredData = [...this._restaurantData].filter(
-      (el) =>
-        el?.name?.match(new RegExp(`${this._query?.value}`, "i")) &&
-        el?.city?.match(new RegExp(`${this._query?.city}`, "i"))
+      (el) => el?.name?.match(new RegExp(`${this._query?.value}`, 'i'))
+        && el?.city?.match(new RegExp(`${this._query?.city}`, 'i')),
     );
     this._exploreResult.data = this._filteredData;
   }
 
   hook() {
-    this._exploreResult = document.createElement("restaurant-container");
+    this._exploreResult = document.createElement('restaurant-container');
     this._exploreResult.data = this._filteredData;
 
-    this.querySelector(".explore-section .section-inner").appendChild(
-      this._exploreResult
+    this.querySelector('.explore-section .section-inner').appendChild(
+      this._exploreResult,
     );
 
     this._searchBarInput = this.querySelector(
-      ".homepage-hero-searchbar > input"
+      '.homepage-hero-searchbar > input',
     );
     this._citySelectorInput = this.querySelector(
-      ".homepage-hero-searchbar-city-selector"
+      '.homepage-hero-searchbar-city-selector',
     );
-    this._searchBarInput.addEventListener("keyup", (el) => {
+    this._searchBarInput.addEventListener('keyup', (el) => {
       this.queryListener({ value: el.target.value });
     });
-    this._citySelectorInput.addEventListener("change", (el) => {
+    this._citySelectorInput.addEventListener('change', (el) => {
       this.queryListener({ city: el.target.value });
     });
 
     this._catSelector = this.querySelectorAll(
-      ".searchbar-category-selector > button"
+      '.searchbar-category-selector > button',
     );
 
     this._catSelector.forEach((el, index) => {
-      el.addEventListener("click", () => {
+      el.addEventListener('click', () => {
         this.switchTarget(index);
       });
     });
@@ -93,10 +91,10 @@ class LandingContent extends HTMLElement {
                             <select class="homepage-hero-searchbar-city-selector form-control me-3">
                               <option value="">All Location</option>
                               ${this._availableCity
-                                ?.map(
-                                  (el) => `<option value="${el}">${el}</option>`
-                                )
-                                .join("")}
+    ?.map(
+      (el) => `<option value="${el}">${el}</option>`,
+    )
+    .join('')}
                             </select>
                           </div>
                           <button class="btn homepage-hero-searchbar-button">
@@ -137,4 +135,4 @@ class LandingContent extends HTMLElement {
   }
 }
 
-customElements.define("landing-content", LandingContent);
+customElements.define('landing-content', LandingContent);

@@ -1,5 +1,5 @@
 export function reduceString(str, maxLength = 100) {
-  return str.length > maxLength ? str.substr(0, maxLength) + ".." : str;
+  return str.length > maxLength ? `${str.substr(0, maxLength)}..` : str;
 }
 
 export function roundToPrecision(num, precision = 2) {
@@ -7,12 +7,12 @@ export function roundToPrecision(num, precision = 2) {
 }
 
 export function formatNumber(x) {
-  if (isNaN(x)) return 0;
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  if (Number.isNaN(x)) return 0;
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
 export function padNumber(x, size) {
   let num = x.toString();
-  while (num.length < size) num = "0" + num;
+  while (num.length < size) num = `0${num}`;
   return num;
 }
