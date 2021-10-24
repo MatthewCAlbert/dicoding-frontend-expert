@@ -77,9 +77,3 @@ select:focus {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.skip-link {
-  position: relative;
-  &:focus {
-    top: 0;
-  }
-}
