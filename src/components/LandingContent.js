@@ -119,7 +119,7 @@ class LandingContent extends HTMLElement {
 
                   <div class="hero-explore-now">
                     <p>Don’t know what or where to eat?</p>
-                    <a href="#explore" class="btn">Explore Now</a>
+                    <a href="#explore" class="btn skip-link">Go to Explore <i class="fas fa-chevron-down"></i></a>
                   </div>
 
               </div>

@@ -1,6 +1,14 @@
 @import "_variables.scss";
 @import "_mixins.scss";
 
+button,
+a,
+input,
+textarea,
+select {
+  @extend .minimum-touch-area;
+}
+
 app-layout {
   min-height: 100vh;
   display: flex;
@@ -60,9 +68,6 @@ app-layout {
         @extend .minimum-touch-area;
         color: $palewhite;
         font-size: 2rem;
-        &:focus {
-          outline: none;
-        }
       }
     }
     .nav-wrapper {
