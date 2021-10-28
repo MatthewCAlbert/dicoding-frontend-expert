@@ -19,6 +19,10 @@ a {
   box-sizing: border-box;
 }
 
+img {
+  display: block;
+}
+
 @import "./layouts";
 @import "./utils";
 @import "./landinghero";
@@ -116,6 +120,6 @@ a {
   }
 }
 
-img {
-  display: block;
+.restaurant-detail{
+  
 }

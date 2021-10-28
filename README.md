@@ -8,6 +8,7 @@
 
 ## Notice
 - Food switcher is turned off.
+- Lazy Image will be fully functional for the third submission.
 
 ## Using
 - Webpack 5

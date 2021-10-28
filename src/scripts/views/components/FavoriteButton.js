@@ -3,6 +3,7 @@ import RestaurantModel from '../../data/restaurant.model';
 class FavoriteButton extends HTMLElement {
   constructor() {
     super();
+    this._isFavoriteSentence = ['ADD TO FAVORITE', 'REMOVE FROM FAVORITE'];
   }
 
   connectedCallback() {
@@ -16,7 +17,7 @@ class FavoriteButton extends HTMLElement {
     this.innerHTML = !this._isLongVersion ? `
       <button class="btn restaurant-item-like-button"><i class="${this._isFavorite ? 'fas' : 'far'} fa-heart"></i></button>
     ` : `
-      <button class="btn"><i class="${this._isFavorite ? 'fas' : 'far'} fa-heart"></i> <span></span></button>
+      <button class="btn"><i class="${this._isFavorite ? 'fas' : 'far'} fa-heart"></i> <span>${this._isFavorite ? this._isFavoriteSentence?.[1] : this._isFavoriteSentence?.[0]}</span></button>
     `;
 
     this.querySelector('button').addEventListener('click', async (e) => {
@@ -38,8 +39,8 @@ class FavoriteButton extends HTMLElement {
           }
         }
         if (text) {
-          if (this._isFavorite) text.innerHTML = 'REMOVE FROM FAVORITE';
-          else text.innerHTML = 'ADD TO FAVORITE';
+          if (this._isFavorite) text.innerHTML = this._isFavoriteSentence?.[1];
+          else text.innerHTML = this._isFavoriteSentence?.[0];
         }
       }
     });

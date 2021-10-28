@@ -26,7 +26,7 @@ class RestaurantCard extends HTMLElement {
           <div class="restaurant-item-head">
               <div class="restaurant-item-label">${this._location}</div>
               <a href="/#/restaurant/${this._id}" style="background-image: url('${this._img}');"></a>
-              ${!this._noFav ? `<favorite-button target-id="${this._id}" favorite="${this._favorite ? 1 : 0}"><favorite-button/>` : ''}
+              ${!this._noFav ? `<favorite-button target-id="${this._id}" favorite="${this._favorite ? 1 : 0}"></favorite-button>` : ''}
           </div>
           <div class="restaurant-item-content">
               <div class="d-flex align-items-center justify-content-between">

@@ -8,7 +8,7 @@ const FavoriteRestaurantList = {
           <h1 class="text-center mb-0">My Favorites</h1>
         </div>
         <div class="restaurant-items-container">
-          <loading-indicator><loading-indicator/>
+          <loading-indicator></loading-indicator>
         </div>
       </app-section>
     `;
