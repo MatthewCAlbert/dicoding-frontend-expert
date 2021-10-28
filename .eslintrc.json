@@ -19,6 +19,7 @@
         "no-trailing-spaces": "off",
         "no-unused-vars":"off",
         "no-empty-function": "off",
+        "no-prototype-builtins": 0,
         "linebreak-style": 0,
         "import/no-extraneous-dependencies": 0,
         "no-restricted-globals": 0,

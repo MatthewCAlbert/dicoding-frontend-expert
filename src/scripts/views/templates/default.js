@@ -31,6 +31,7 @@ class DefaultLayout extends BaseLayout {
 
   render() {
     return `
+      <a href="#main-content" class="skip-link">Go to Content</a>
       <div class="app-layout">
         <header class="header">
             <div class="header-inner">
@@ -49,7 +50,7 @@ class DefaultLayout extends BaseLayout {
                 </nav>
             </div>
         </header>
-        <main class="main-container">
+        <main class="main-container" id="main-content">
 
         </main>
         <div class="scroll-up-btn-wrapper">

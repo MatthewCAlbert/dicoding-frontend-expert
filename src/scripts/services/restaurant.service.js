@@ -59,7 +59,7 @@ const restaurantService = {
    */
   cdn(pictureId, size) {
     if (!['small', 'medium', 'large'].includes(size)) return '';
-    const url = `${this._baseServiceUrl}images/${size}/${pictureId}`;
+    const url = `${CONFIG.BASE_CDN_URL}images/${size}/${pictureId}`;
     return url;
   },
 };

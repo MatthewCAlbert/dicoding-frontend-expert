@@ -1,25 +1,23 @@
 import 'regenerator-runtime';
-import CacheHelper from './utils/cache-helper';
+import { clientsClaim } from 'workbox-core';
+import { ExpirationPlugin } from 'workbox-expiration';
+import {
+  NetworkOnly, NetworkFirst, CacheFirst, StaleWhileRevalidate, 
+} from 'workbox-strategies';
+import { registerRoute, setDefaultHandler, setCatchHandler } from 'workbox-routing';
+import { matchPrecache, precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
 
-console.log(global.serviceWorkerOption);
+self.skipWaiting();
+clientsClaim();
 
-// const { assets } = global.serviceWorkerOption;
-
-self.addEventListener('install', (event) => {
-  console.log('Installing Service Worker ...');
- 
-  // TODO: Caching App Shell Resource
+// must include following lines when using inject manifest module from workbox
+// https://developers.google.com/web/tools/workbox/guides/precache-files/workbox-build#add_an_injection_point
+const WB_MANIFEST = self.__WB_MANIFEST;
+const revisionVer = 1;
+// Precache fallback route and image
+WB_MANIFEST.push({
+  url: '/',
+  revision: revisionVer,
 });
- 
-self.addEventListener('activate', (event) => {
-  console.log('Activating Service Worker ...');
- 
-  // TODO: Delete old caches
-});
- 
-self.addEventListener('fetch', (event) => {
-  // console.log(event.request);
- 
-  // event.respondWith(fetch(event.request));
-  // TODO: Add/get fetch request to/from caches
-});
+precacheAndRoute(WB_MANIFEST);
+cleanupOutdatedCaches();
