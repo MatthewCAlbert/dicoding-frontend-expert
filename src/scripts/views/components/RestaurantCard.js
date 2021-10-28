@@ -11,6 +11,7 @@ class RestaurantCard extends HTMLElement {
       || 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas reiciendis voluptas placeat inventore accusamus dolorem. Totam, alias voluptate voluptatibus, neque voluptatem cumque explicabo quidem commodi ipsa laborum laudantium, voluptas nam.';
     this._id = this.getAttribute('data-id');
     this._favorite = this.getAttributeNames().includes('favorite');
+    this._noFav = this.getAttributeNames().includes('no-fav');
     this._title = this.getAttribute('title') || 'Kafe Cemara';
     this._rating = parseFloat(this.getAttribute('rating')) || 5;
     this._location = this.getAttribute('location') || 'Jakarta';
@@ -21,14 +22,15 @@ class RestaurantCard extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <a class="restaurant-item" tabindex="0" href="/#/restaurant/${this._id}">
-          <div class="restaurant-item-head" style="background-image: url('${this._img}');">
+      <div class="restaurant-item">
+          <div class="restaurant-item-head">
               <div class="restaurant-item-label">${this._location}</div>
-              <span class="btn restaurant-item-like-button"><i class="${this._favorite ? 'fas' : 'far'} fa-heart"></i></span>
+              <a href="/#/restaurant/${this._id}" style="background-image: url('${this._img}');"></a>
+              ${!this._noFav ? `<favorite-button target-id="${this._id}" favorite="${this._favorite ? 1 : 0}"><favorite-button/>` : ''}
           </div>
           <div class="restaurant-item-content">
               <div class="d-flex align-items-center justify-content-between">
-                  <p class="restaurant-item-title">${this._title}</p>
+                  <p class="restaurant-item-title" >${this._title}</p>
                   <div>
                       <i class="fas fa-star"></i>
                       <span>${roundToPrecision(this._rating, 1)}</span>
@@ -38,7 +40,7 @@ class RestaurantCard extends HTMLElement {
                   <p>${reduceString(this._description, 190)}</p>
               </div>
           </div>
-      </a>
+      </div>
     `;
   }
 }

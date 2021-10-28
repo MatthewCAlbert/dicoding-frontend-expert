@@ -11,9 +11,13 @@ class LoadingIndicator extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <app-section class="loading-container" style="height:100%;">
-        Ini lagi loading...
-      </app-section>
+      <div center class="loading-container">
+        <img src="/images/loading.gif" width="128" alt="Loading animation"/>
+        <div class="loading-container-title d-flex align-items-center">
+          <span>Loading </span>
+        </div>
+        <p class="loading-container-caption">Getting your stuff ready.</p>
+      </div>
     `;
   }
 }

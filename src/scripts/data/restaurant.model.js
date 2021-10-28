@@ -24,10 +24,14 @@ const RestaurantModel = {
       return;
     }
     let restaurantFinal = restaurant;
-    if (!restaurant.hasOwnProperty('favorite')) {
-      restaurantFinal = { ...restaurant, favorite: false };
+    const currentRestaurant = await this.getRestaurant(restaurant.id);
+    if (currentRestaurant) {
+      restaurantFinal = { ...currentRestaurant, ...restaurant };
     }
-
+    if (!restaurantFinal.hasOwnProperty('favorite')) {
+      restaurantFinal = { ...restaurantFinal, favorite: false };
+    }
+    
     return (await dbPromise).put(OBJECT_STORE_NAME, restaurantFinal);
   },
   async removeRestaurant(id) {
@@ -35,6 +39,15 @@ const RestaurantModel = {
   },
   async getAllFavoriteRestaurant() {
     return (await this.getAllRestaurant()).filter((restaurant) => restaurant?.favorite);
+  },
+  async setRestaurantFavoriteStatus(id, isFavorited) {
+    const restaurant = await this.getRestaurant(id);
+    if (restaurant) {
+      return (await dbPromise).put(OBJECT_STORE_NAME, {
+        ...restaurant, 
+        favorite: Boolean(isFavorited), 
+      }); 
+    }
   },
   async searchRestaurant(query) {
     return (await this.getAllRestaurant()).filter((restaurant) => {

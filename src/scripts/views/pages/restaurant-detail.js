@@ -7,6 +7,7 @@ const RestaurantDetail = {
     return `
       <app-section first-no-bg>
         <h1>Haiya</h1>
+        <loading-indicator><loading-indicator/>
       </app-section>
     `;
   },

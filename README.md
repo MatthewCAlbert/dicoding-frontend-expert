@@ -7,7 +7,7 @@
 - This is for the second submission.
 
 ## Notice
-- Food switcher is not working yet (reserved for last submission).
+- Food switcher is turned off.
 
 ## Using
 - Webpack 5

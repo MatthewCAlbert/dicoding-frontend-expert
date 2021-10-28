@@ -33,6 +33,7 @@ class RestaurantContainer extends HTMLElement {
 
   queryListener(q = {}) {
     this._query = { ...this._query, ...q };
+    this.querySelector('.restaurant-items-container').innerHTML = '<loading-indicator><loading-indicator/>';
 
     if (this._query?.value !== q?.value || !this?.fetched) {
       this._fetched = true;
@@ -61,7 +62,6 @@ class RestaurantContainer extends HTMLElement {
     let changed = false;
 
     restaurantData?.forEach((el) => {
-      RestaurantModel.putRestaurant(el);
       if (!this._availableCity.includes(el?.city)) {
         this._availableCity.push(el?.city);
         changed = true;
@@ -91,7 +91,14 @@ class RestaurantContainer extends HTMLElement {
       }
     }
     response.restaurants = response?.restaurants ? response.restaurants : [];
-    this._restaurantData = response.restaurants;
+
+    // Sync with IDB
+    this._restaurantData = await Promise.all(response.restaurants.map(async (el) => {
+      await RestaurantModel.putRestaurant(el);
+      const currentData = await RestaurantModel.getRestaurant(el.id);
+      return currentData;
+    }));
+
     this.reloadCities(this._restaurantData);
   }
 
@@ -117,20 +124,6 @@ class RestaurantContainer extends HTMLElement {
 
     this._catSelector.forEach((el, index) => {
       el.addEventListener('click', () => {
-        this.switchTarget(index);
-      });
-    });
-  }
-
-  disconnectedCallback() {
-    this._searchBarInput.removeEventListener('keyup', (el) => {
-      this.queryListener({ value: el.target.value });
-    });
-    this._citySelectorInput.removeEventListener('change', (el) => {
-      this.queryListener({ city: el.target.value });
-    });
-    this._catSelector.forEach((el, index) => {
-      el.removeEventListener('click', () => {
         this.switchTarget(index);
       });
     });

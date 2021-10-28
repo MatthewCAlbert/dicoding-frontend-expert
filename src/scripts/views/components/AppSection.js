@@ -12,14 +12,14 @@ class AppSection extends HTMLElement {
 
     this.classList.add('section');
     this.setAttribute('role', 'region');
-    if (this._first) this.classList.add('section-first');
+    if (this._first || this._firstNoBg) this.classList.add('section-first');
     if (this._normalized) this.classList.add('section-normalized');
 
     this.render();
   }
 
   afterRender() {
-    if (this._center) this.querySelector('.section-inner').classList.add('justify-content-center', 'align-items-center', 'd-flex');
+    if (this._center) this.querySelector('.section-inner').classList.add('justify-content-center', 'align-items-center', 'd-flex', 'flex-column');
   }
 
   render() {

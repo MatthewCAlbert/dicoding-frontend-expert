@@ -200,14 +200,29 @@ select {
   top: 0;
 }
 
-.loading-container > div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.loading-container{
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-title{
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  &-caption{
+    margin: 0;
+    font-size: .87rem;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 600;
+  }
 }
 
 .section-first-padder{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
   width: 100%;
   height: $header-height;
   background-color: $primary-red;

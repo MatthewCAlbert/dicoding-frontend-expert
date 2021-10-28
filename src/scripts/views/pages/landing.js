@@ -19,18 +19,6 @@ const LandingPage = {
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center" style="margin-top: 1.5rem;">
-                <div class="searchbar-category-selector">
-                    <div class="btn-bg"></div>
-                    <button class="btn active">
-                        Restaurant
-                    </button>
-                    <button class="btn">
-                        Food
-                    </button>
-                </div>
-            </div>
-
             <div class="hero-explore-now">
               <p>Don’t know what or where to eat?</p>
               <a href="#explore" class="btn">Explore Now <i class="fas fa-chevron-down"></i></a>

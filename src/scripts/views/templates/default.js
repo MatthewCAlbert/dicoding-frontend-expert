@@ -45,7 +45,7 @@ class DefaultLayout extends BaseLayout {
                   <div class="nav-wrapper">
                     <a href="/#">HOME</a>
                     <a href="/#/favorite">FAVORITE</a>
-                    <a href="https://matthewcalbert.com" class="link-special">ABOUT US</a>
+                    <a href="https://matthewcalbert.com" target="_blank" rel="noopener noreferrer" class="link-special">ABOUT US</a>
                   </div>
                 </nav>
             </div>
