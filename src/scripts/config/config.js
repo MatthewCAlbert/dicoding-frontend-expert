@@ -1,5 +1,5 @@
 const CONFIG = {
-  ENABLE_SW: true,
+  ENABLE_SW: false,
   KEY: '12345',
   BASE_URL: 'https://restaurant-api.dicoding.dev/',
   BASE_CDN_URL: 'https://restaurant-api.dicoding.dev/',

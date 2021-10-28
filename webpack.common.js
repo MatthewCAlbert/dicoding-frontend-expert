@@ -13,8 +13,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist", ASSET_PATH === "/" ? "" : ASSET_PATH),
-    filename: "static/chunks/[name].[contenthash].js",
-    chunkFilename: "static/chunks/[id].[contenthash].js",
+    filename: "static/bundle.js",
     publicPath: ASSET_PATH,
   },
   module: {
@@ -44,8 +43,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "static/css/[name].[contenthash].css",
-      chunkFilename: "static/css/[id].[contenthash].css",
+      filename: "static/css/bundle.css",
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/templates/index.html"),

@@ -206,3 +206,9 @@ select {
   align-items: center;
   height: 100%;
 }
+
+.section-first-padder{
+  width: 100%;
+  height: $header-height;
+  background-color: $primary-red;
+}

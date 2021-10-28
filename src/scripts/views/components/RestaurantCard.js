@@ -1,4 +1,5 @@
 import { reduceString, roundToPrecision } from '../../utils/utils';
+import restaurantService from '../../services/restaurant.service';
 
 class RestaurantCard extends HTMLElement {
   constructor() {
@@ -9,10 +10,11 @@ class RestaurantCard extends HTMLElement {
     this._description = this.innerHTML
       || 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas reiciendis voluptas placeat inventore accusamus dolorem. Totam, alias voluptate voluptatibus, neque voluptatem cumque explicabo quidem commodi ipsa laborum laudantium, voluptas nam.';
     this._id = this.getAttribute('data-id');
+    this._favorite = this.getAttributeNames().includes('favorite');
     this._title = this.getAttribute('title') || 'Kafe Cemara';
     this._rating = parseFloat(this.getAttribute('rating')) || 5;
     this._location = this.getAttribute('location') || 'Jakarta';
-    this._img = this.getAttribute('img')
+    this._img = restaurantService.cdn(this.getAttribute('img'), 'small')
       || 'https://cdn.idntimes.com/content-images/community/2019/11/people-in-cafeteria-2159065-378782f1354b8ddad7e09463bd52f0f8_600x400.jpg';
     this.render();
   }
@@ -22,6 +24,7 @@ class RestaurantCard extends HTMLElement {
       <a class="restaurant-item" tabindex="0" href="/#/restaurant/${this._id}">
           <div class="restaurant-item-head" style="background-image: url('${this._img}');">
               <div class="restaurant-item-label">${this._location}</div>
+              <span class="btn restaurant-item-like-button"><i class="${this._favorite ? 'fas' : 'far'} fa-heart"></i></span>
           </div>
           <div class="restaurant-item-content">
               <div class="d-flex align-items-center justify-content-between">

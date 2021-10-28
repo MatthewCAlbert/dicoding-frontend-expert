@@ -11,6 +11,7 @@ class App {
     this._drawer = null;
     this._layout = null;
     this._isLoading = true;
+    this._prevUrl = '';
 
     this._initialAppShell();
   }
@@ -21,6 +22,10 @@ class App {
 
   _isLayoutChanged(Layout) {
     return !this._layout || this._layout.name !== Layout.name;
+  }
+
+  _isPageChanged(Page) {
+    // return !this._layout || this._layout.name !== Layout.name;
   }
 
   _renderLayout(Layout = DefaultLayout) {
@@ -54,7 +59,11 @@ class App {
   async renderPage() {
     this._isLoading = true;
     const url = UrlParser.parseActiveUrlWithCombiner();
-    console.log(url);
+
+    if (this._prevUrl === url) return;
+
+    this._prevUrl = url;
+    
     const pageContent = routes[url]?.content;
     const usedLayout = routes[url]?.layout;
 
@@ -65,10 +74,10 @@ class App {
       }
       this._renderLayout(usedLayout || DefaultLayout);
       this._layout.content = await pageContent?.render();
-      this._cleanUpPage = await pageContent.afterRender();
+      this._cleanUpPage = await pageContent?.afterRender();
     } else {
       // Not Found
-      this._renderLayout(BaseLayout);
+      this._renderLayout(DefaultLayout);
       this._layout.content = await Page404.render();
     }
 

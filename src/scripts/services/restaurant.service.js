@@ -2,7 +2,7 @@ import { apiProvider } from '../config/api';
 import CONFIG from '../config/config';
 
 const restaurantService = {
-  _baseServiceUrl: CONFIG.BASE_IMAGE_URL,
+  _baseServiceUrl: CONFIG.BASE_URL,
   _api: apiProvider(CONFIG.KEY),
 
   /**
@@ -13,6 +13,7 @@ const restaurantService = {
     const url = `${this._baseServiceUrl}list`;
     const response = await this._api.get(url);
     const data = response.json();
+    return data;
   },
 
   /**
@@ -24,6 +25,7 @@ const restaurantService = {
     const url = `${this._baseServiceUrl}detail/${restaurantId}`;
     const response = await this._api.get(url);
     const data = response.json();
+    return data;
   },
 
   /**
@@ -35,6 +37,7 @@ const restaurantService = {
     const url = `${this._baseServiceUrl}search?q=${query}`;
     const response = await this._api.get(url);
     const data = response.json();
+    return data;
   },
 
   /**
@@ -48,7 +51,7 @@ const restaurantService = {
     const url = `${this._baseServiceUrl}review`;
     const response = await this._api.post(url, { id, name, review });
     const data = response.json();
-    return { id, name, review };
+    return data;
   },
 
   /**

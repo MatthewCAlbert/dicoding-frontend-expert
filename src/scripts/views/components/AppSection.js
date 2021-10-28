@@ -5,7 +5,9 @@ class AppSection extends HTMLElement {
 
   connectedCallback() {
     this._content = this.innerHTML;
+    this._firstNoBg = this.getAttributeNames().includes('first-no-bg') || false;
     this._first = this.getAttributeNames().includes('first') || false;
+    this._center = this.getAttributeNames().includes('center') || false;
     this._normalized = this.getAttribute('normalized') !== 'off';
 
     this.classList.add('section');
@@ -16,12 +18,19 @@ class AppSection extends HTMLElement {
     this.render();
   }
 
+  afterRender() {
+    if (this._center) this.querySelector('.section-inner').classList.add('justify-content-center', 'align-items-center', 'd-flex');
+  }
+
   render() {
     this.innerHTML = `
+      ${this._firstNoBg ? '<div class="section-first-padder"></div>' : ''}
       <div class="section-inner">
         ${this._content}
       </div>
     `;
+
+    this.afterRender();
   }
 }
 

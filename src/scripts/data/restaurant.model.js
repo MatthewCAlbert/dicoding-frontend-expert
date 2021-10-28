@@ -19,12 +19,16 @@ const RestaurantModel = {
   async getAllRestaurant() {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
   },
-  async addFavoriteRestaurant(restaurant) {
+  async putRestaurant(restaurant) {
     if (!restaurant.hasOwnProperty('id')) {
       return;
     }
+    let restaurantFinal = restaurant;
+    if (!restaurant.hasOwnProperty('favorite')) {
+      restaurantFinal = { ...restaurant, favorite: false };
+    }
 
-    return (await dbPromise).put(OBJECT_STORE_NAME, restaurant);
+    return (await dbPromise).put(OBJECT_STORE_NAME, restaurantFinal);
   },
   async removeRestaurant(id) {
     return (await dbPromise).delete(OBJECT_STORE_NAME, id);

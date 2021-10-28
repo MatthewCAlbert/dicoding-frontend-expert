@@ -43,8 +43,8 @@ class DefaultLayout extends BaseLayout {
                     <button class="btn mobile-nav-toggler"><i class="fas fa-bars"></i></button>
                   </div>
                   <div class="nav-wrapper">
-                    <a href="/">HOME</a>
-                    <a href="#">FAVORITE</a>
+                    <a href="/#">HOME</a>
+                    <a href="/#/favorite">FAVORITE</a>
                     <a href="https://matthewcalbert.com" class="link-special">ABOUT US</a>
                   </div>
                 </nav>
