@@ -3,10 +3,6 @@ const common = require("./webpack.common");
 
 module.exports = merge(common, {
   mode: "production",
-  output: {
-    filename: "static/chunks/[name].[contenthash].js",
-    chunkFilename: "static/chunks/[id].[contenthash].js",
-  },
   module: {
     rules: [
       {
@@ -23,10 +19,4 @@ module.exports = merge(common, {
       },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "static/css/[name].[contenthash].css",
-      chunkFilename: "static/css/[id].[contenthash].css",
-    }),
-  ]
 });

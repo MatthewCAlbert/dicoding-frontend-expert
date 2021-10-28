@@ -22,7 +22,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader",
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: "css-loader",
@@ -43,7 +43,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "static/css/bundle.css",
+      filename: "static/css/[name].css",
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/templates/index.html"),
