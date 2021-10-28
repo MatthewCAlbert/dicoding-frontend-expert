@@ -8,6 +8,7 @@ const OtherPage = {
           <h1>Hello World</h1>
         </div>
       </section>
+      <loading-indicator loading></loading-indicator>
     `;
   },
   

@@ -1,7 +1,7 @@
 const CONFIG = {
-  ENABLE_SW: false,
-  KEY: 'YOUR_API_KEY',
-  BASE_URL: '/',
+  ENABLE_SW: true,
+  KEY: '12345',
+  BASE_URL: 'https://restaurant-api.dicoding.dev/',
   BASE_IMAGE_URL: '/',
   DEFAULT_LANGUAGE: 'en-us',
   CACHE_NAME: '',

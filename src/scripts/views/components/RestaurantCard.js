@@ -8,6 +8,7 @@ class RestaurantCard extends HTMLElement {
   connectedCallback() {
     this._description = this.innerHTML
       || 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas reiciendis voluptas placeat inventore accusamus dolorem. Totam, alias voluptate voluptatibus, neque voluptatem cumque explicabo quidem commodi ipsa laborum laudantium, voluptas nam.';
+    this._id = this.getAttribute('data-id');
     this._title = this.getAttribute('title') || 'Kafe Cemara';
     this._rating = parseFloat(this.getAttribute('rating')) || 5;
     this._location = this.getAttribute('location') || 'Jakarta';
@@ -18,7 +19,7 @@ class RestaurantCard extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <div class="restaurant-item" tabindex="0">
+      <a class="restaurant-item" tabindex="0" href="/#/restaurant/${this._id}">
           <div class="restaurant-item-head" style="background-image: url('${this._img}');">
               <div class="restaurant-item-label">${this._location}</div>
           </div>
@@ -34,7 +35,7 @@ class RestaurantCard extends HTMLElement {
                   <p>${reduceString(this._description, 190)}</p>
               </div>
           </div>
-      </div>
+      </a>
     `;
   }
 }

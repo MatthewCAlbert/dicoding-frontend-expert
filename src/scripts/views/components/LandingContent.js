@@ -1,5 +1,5 @@
-import data from '../../../DATA.json';
-import dataExtra from '../../../DATA_EXTRA.json';
+import data from '../../data/legacy/DATA.json';
+import dataExtra from '../../data/legacy/DATA_EXTRA.json';
 
 class LandingContent extends HTMLElement {
   constructor() {
@@ -23,6 +23,10 @@ class LandingContent extends HTMLElement {
     this._availableCity.sort();
 
     this.render();
+  }
+
+  disconnectedCallback() {
+    
   }
 
   switchTarget(index) {
@@ -79,56 +83,52 @@ class LandingContent extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <section class="section section-first section-normalized homepage-hero" id="hero">
-          <div class="section-inner">
-              <div class="w-100">
+      <app-section first class="homepage-hero" id="hero">
+        <div class="w-100">
 
-                  <p class="text-center text-white hero-title">Find your next place to eat</p>
-                  <div class="homepage-hero-searchbar">
-                      <input class="form-control me-3" type="text" placeholder="Find your restaurant here.." />
-                      <div>
-                          <div class="homepage-hero-searchbar-city-container">
-                            <select class="homepage-hero-searchbar-city-selector form-control me-3">
-                              <option value="">All Location</option>
-                              ${this._availableCity
+            <p class="text-center text-white hero-title">Find your next place to eat</p>
+            <div class="homepage-hero-searchbar">
+                <input class="form-control me-3" type="text" placeholder="Find your restaurant here.." />
+                <div>
+                    <div class="homepage-hero-searchbar-city-container">
+                      <select class="homepage-hero-searchbar-city-selector form-control me-3">
+                        <option value="">All Location</option>
+                        ${this._availableCity
     ?.map(
       (el) => `<option value="${el}">${el}</option>`,
     )
     .join('')}
-                            </select>
-                          </div>
-                          <button class="btn homepage-hero-searchbar-button">
-                              <i class="fas fa-search"></i>
-                          </button>
-                      </div>
-                  </div>
+                      </select>
+                    </div>
+                    <button class="btn homepage-hero-searchbar-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
 
-                  <div class="d-flex justify-content-center" style="margin-top: 1.5rem;">
-                      <div class="searchbar-category-selector">
-                          <div class="btn-bg"></div>
-                          <button class="btn active">
-                              Restaurant
-                          </button>
-                          <button class="btn">
-                              Food
-                          </button>
-                      </div>
-                  </div>
+            <div class="d-flex justify-content-center" style="margin-top: 1.5rem;">
+                <div class="searchbar-category-selector">
+                    <div class="btn-bg"></div>
+                    <button class="btn active">
+                        Restaurant
+                    </button>
+                    <button class="btn">
+                        Food
+                    </button>
+                </div>
+            </div>
 
-                  <div class="hero-explore-now">
-                    <p>Don’t know what or where to eat?</p>
-                    <a href="#explore" class="btn">Explore Now <i class="fas fa-chevron-down"></i></a>
-                  </div>
+            <div class="hero-explore-now">
+              <p>Don’t know what or where to eat?</p>
+              <a href="#explore" class="btn">Explore Now <i class="fas fa-chevron-down"></i></a>
+            </div>
 
-              </div>
-          </div>
-      </section>
+        </div>
+      </app-section>
 
-      <section class="section section-normalized explore-section" id="explore">
-          <div class="section-inner">
-              <h1 class="text-center mb-0">Explore Restaurant</h1>
-          </div>
-      </section>
+      <app-section class="explore-section" id="explore">
+        <h1 class="text-center mb-0">Explore Restaurant</h1>
+      </app-section>
     `;
 
     this.hook();

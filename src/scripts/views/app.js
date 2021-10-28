@@ -10,6 +10,7 @@ class App {
     this._root = root;
     this._drawer = null;
     this._layout = null;
+    this._isLoading = true;
 
     this._initialAppShell();
   }
@@ -45,25 +46,33 @@ class App {
       this._cleanUpLayout = () => {
         if (this?._drawer) this?._drawer?.detach();
         if (typeof cleanUp === 'function') cleanUp();
+        this._cleanUpLayout = null;
       };
     }
   }
 
   async renderPage() {
+    this._isLoading = true;
     const url = UrlParser.parseActiveUrlWithCombiner();
     console.log(url);
     const pageContent = routes[url]?.content;
     const usedLayout = routes[url]?.layout;
 
     if (pageContent) {
+      if (typeof this?._cleanUpPage === 'function') {
+        this?._cleanUpPage();
+        this._cleanUpPage = null;
+      }
       this._renderLayout(usedLayout || DefaultLayout);
       this._layout.content = await pageContent?.render();
-      const cleanUp = await pageContent.afterRender();
+      this._cleanUpPage = await pageContent.afterRender();
     } else {
       // Not Found
       this._renderLayout(BaseLayout);
       this._layout.content = await Page404.render();
     }
+
+    this._isLoading = false;
   }
 }
 
