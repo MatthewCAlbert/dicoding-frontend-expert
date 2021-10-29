@@ -1,7 +1,7 @@
 # Project Submission for Dicoding "Menjadi Front-End Web Developer Expert"
 [![Netlify Status](https://api.netlify.com/api/v1/badges/baf19ec2-ef24-44ca-b111-ee9d1a35ac06/deploy-status)](https://app.netlify.com/sites/eager-keller-7a2cdb/deploys)
 
-[Visit Sample Deployment Site](geoculinary.matthewcalbert.com)
+[Visit Sample Deployment Site](https://geoculinary.matthewcalbert.com)
 
 ## Info
 - This is for the second submission.
