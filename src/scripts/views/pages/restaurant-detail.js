@@ -10,6 +10,16 @@ const RestaurantDetail = {
       </app-section>
     `;
   },
+
+  renderReview(reviews) {
+    document.querySelector('.restaurant-detail-review-container').innerHTML = reviews?.map((el) => (`
+    <div>
+      <div class="review-author">${el?.name}</div>
+      <div class="review-date">${el?.date}</div>
+      <div class="review-content">"${el?.review}"</div>
+    </div>
+    `))?.join('') || '<span><i>No review yet, be the first to add a review!</i></span>';
+  },
   
   async afterRender() {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
@@ -24,16 +34,73 @@ const RestaurantDetail = {
     }
     if (restaurantDetail?.id) {
       // load
-      console.log(restaurantDetail);
+      // console.log(restaurantDetail);
       document.querySelector('#detail > .section-inner').innerHTML = `
-        <lazy-image data-src="${restaurantService.cdn(restaurantDetail.pictureId, 'medium')}" width="100%" alt="${restaurantDetail?.name}"></lazy-image>
-        <favorite-button target-id="${restaurantDetail?.id}" favorite="${restaurantDetail?.favorite ? 1 : 0}" long></favorite-button>
-        <h1>${restaurantDetail?.name}</h1>
+        <lazy-image data-src="${restaurantService.cdn(restaurantDetail.pictureId, 'medium')}" width="100%" alt="${restaurantDetail?.name}" style="width:100%;"></lazy-image>
+
+        <div class="restaurant-detail-head d-flex align-items-center justify-content-between w-100" style="margin-top:20px;">
+          <div class="d-flex align-items-center">
+            <h1 class="my-0">${restaurantDetail?.name}</h1>
+            <div class="marker"><i class="fas fa-star" style="margin-left:10px;"></i> ${restaurantDetail?.rating}</div>
+          </div>
+          <div class="marker">
+            <i class="fas fa-map-marker-alt"></i> ${restaurantDetail?.city}
+          </div>
+        </div>
+        
+        <p class="text-left w-100 my-0 restaurant-detail-address">${restaurantDetail?.address || 'Address not loaded'}</p>
+
+        <div class="restaurant-detail-head-2 d-flex align-items-center justify-content-between w-100">
+          <div class="restaurant-detail-category-container">
+            ${restaurantDetail?.categories?.map((el) => (`<div>${el?.name}</div>`))?.join('') || ''}
+          </div>
+          <div>
+            <favorite-button target-id="${restaurantDetail?.id}" favorite="${restaurantDetail?.favorite ? 1 : 0}" long></favorite-button>
+          </div>
+        </div>
+
         <p>${restaurantDetail?.description}</p>
-        <p>${restaurantDetail?.city}</p>
-        <p>${restaurantDetail?.rating}</p>
-        <p>${restaurantDetail?.categories?.map((el) => (`${el?.name}`))?.join(', ')}</p>
+        
+        <h2>Makanan</h2>
+        <div class="restaurant-detail-menu-container">
+          ${restaurantDetail?.menus?.foods?.map((el) => (`
+          <div>
+            <i class="fas fa-utensils"></i>
+            <div>${el?.name}</div>
+          </div>
+          `))?.join('') || 'Food not loaded'}
+        </div>
+
+        <h2>Minuman</h2>
+        <div class="restaurant-detail-menu-container">
+          ${restaurantDetail?.menus?.drinks?.map((el) => (`
+          <div>
+            <i class="fas fa-coffee"></i>
+            <div>${el?.name}</div>
+          </div>
+          `))?.join('') || 'Drink not loaded'}
+        </div>
+
+        <h2>Reviews</h2>
+        <div class="restaurant-detail-review-container">
+        </div>
+
+        <h2>Write Your Review</h2>
+        ${navigator?.onLine ? '' : '<p class="offline-warning">You are offline, your review will not be submitted until you\'re online.</p>'}
+        <form id="review-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" type="text" class="form-control" required/>
+          </div>
+          <div class="form-group">
+            <label for="review">Review</label>
+            <textarea id="review" class="form-control" class="font-control" rows="4" required></textarea>
+          </div>
+          <button class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp; Add New Review</button>
+        </form>
       `;
+
+      this.renderReview(restaurantDetail?.customerReviews || []);
     } else {
       // not found
       document.querySelector('#detail > .section-inner').innerHTML = `
@@ -47,7 +114,31 @@ const RestaurantDetail = {
           </div>
         </div>
       `;
+      return;
     }
+
+    const form = document.querySelector('#detail form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = e.target.querySelector('#name');
+      const review = e.target.querySelector('#review');
+      const reviewData = {
+        id: restaurantId,
+        name: name.value,
+        review: review.value,
+      };
+      name.disabled = true;
+      review.disabled = true;
+      restaurantService.addNewReview(reviewData).then((response) => {
+        this.renderReview(response?.customerReviews);
+        e.target.reset();
+      }).catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        name.disabled = false;
+        review.disabled = false;
+      });
+    });
   },
 };
 

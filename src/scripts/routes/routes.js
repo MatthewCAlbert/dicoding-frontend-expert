@@ -11,13 +11,13 @@ const routes = {
   }, // default page
   '/restaurant/:id': {
     content: RestaurantDetail,
-  }, // resto detail
+  }, // restaurant detail page
   '/favorite': {
     content: FavoriteRestaurantList,
-  }, // example other page
-  '/other': {
-    content: OtherPage,
-  }, // example other page
+  }, // favorite page
+  // '/testing': {
+  //   content: OtherPage,
+  // },
 };
 
 export default routes;

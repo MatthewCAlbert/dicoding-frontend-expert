@@ -132,7 +132,7 @@ class RestaurantContainer extends HTMLElement {
   render() {
     this.innerHTML = `
       <div class="restaurant-items-container-result">
-        <p><span></span> result found.</p>
+        <p><span>0</span> result found.</p>
       </div>
       <div class="restaurant-items-container">
       </div>

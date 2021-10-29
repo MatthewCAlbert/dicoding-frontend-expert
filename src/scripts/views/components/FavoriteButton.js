@@ -17,7 +17,7 @@ class FavoriteButton extends HTMLElement {
     this.innerHTML = !this._isLongVersion ? `
       <button class="btn restaurant-item-like-button"><i class="${this._isFavorite ? 'fas' : 'far'} fa-heart"></i></button>
     ` : `
-      <button class="btn"><i class="${this._isFavorite ? 'fas' : 'far'} fa-heart"></i> <span>${this._isFavorite ? this._isFavoriteSentence?.[1] : this._isFavoriteSentence?.[0]}</span></button>
+      <button class="btn favorite-button ${this._isFavorite ? 'active' : ''}"><i class="${this._isFavorite ? 'fas' : 'far'} fa-heart"></i> <span>${this._isFavorite ? this._isFavoriteSentence?.[1] : this._isFavoriteSentence?.[0]}</span></button>
     `;
 
     this.querySelector('button').addEventListener('click', async (e) => {
@@ -27,6 +27,7 @@ class FavoriteButton extends HTMLElement {
       )) {
         this._isFavorite = !this._isFavorite;
         const icon = this.querySelector('i');
+        const button = this.querySelector('button');
         const text = this.querySelector('span');
         this.setAttribute('favorite', this._isFavorite ? 1 : 0);
         if (icon) {
@@ -39,8 +40,13 @@ class FavoriteButton extends HTMLElement {
           }
         }
         if (text) {
-          if (this._isFavorite) text.innerHTML = this._isFavoriteSentence?.[1];
-          else text.innerHTML = this._isFavoriteSentence?.[0];
+          if (this._isFavorite) {
+            button.classList.add('active');
+            text.innerHTML = this._isFavoriteSentence?.[1];
+          } else {
+            button.classList.remove('active');
+            text.innerHTML = this._isFavoriteSentence?.[0];
+          }
         }
       }
     });

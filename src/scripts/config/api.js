@@ -1,8 +1,7 @@
+// import CONFIG from "./config";
+
 export const apiProvider = (key = '', options = {}) => {
   const finalOptions = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
     ...options, 
   };
 
@@ -10,8 +9,11 @@ export const apiProvider = (key = '', options = {}) => {
     get: async (endpoint) => fetch(endpoint, { ...finalOptions, method: 'GET' }),
     post: async (endpoint, data) => fetch(endpoint, {
       ...finalOptions,
+      mode: 'cors',
       headers: {
-        'X-Auth-Token': key,
+        ...finalOptions.headers,
+        'Content-Type': 'application/json',
+        // 'X-Auth-Token': CONFIG.API_KEY,
       },
       method: 'POST',
       body: JSON.stringify(data), 

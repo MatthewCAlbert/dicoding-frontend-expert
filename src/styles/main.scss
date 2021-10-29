@@ -72,7 +72,7 @@ img {
       right: 10px;
       font-size: 1.3rem;
       background-color: rgba(255, 255, 255, 0.8);
-      color: black;
+      color: $black;
       transition: .2s;
       & > .fas{
         color: $primary-red;
@@ -121,5 +121,138 @@ img {
 }
 
 .restaurant-detail{
-  
+  color: $black;
+  lazy-image{
+    height: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  &-head{
+    .marker{
+      font-size: 1.13rem;
+    }
+  }
+  &-head-2{
+    margin-top: 10px;
+    flex-direction: column;
+    & > div:first-child{
+      margin: 10px 0;
+    }
+    @include breakpoint-min($breakpoint-sm){
+      flex-direction: row;
+    }
+  }
+  &-address{
+    font-weight: 400;
+  }
+  &-category-container{
+    display: flex;
+    & > div{
+      font-size: .9rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      background-color: $primary-red;
+      color: $palewhite;
+      margin-right: 10px;
+      &:nth-child(2n+2){
+        background-color: $secondary-red;
+      }
+    }
+  }
+  &-menu-container, &-review-container{
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    row-gap: 15px;
+    column-gap: 10px;
+    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fit, 100%);
+    text-align: center;
+    @include breakpoint-min($breakpoint-sm){
+      grid-template-columns: repeat(auto-fit, 300px);
+    }
+    & > div{
+      word-wrap: break-word;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      padding: 15px 20px;
+      background-color: white;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
+      border-radius: 10px;
+      font-size: .9rem;
+      i{
+        font-size: 36px;
+        margin-right: 20px;
+      }
+    }
+  }
+  &-review-container{
+    & > div{
+      text-align: left;
+      flex-direction: column;
+      font-weight: 400;
+      & > div{
+        width: 100%;
+      }
+      .review-author{
+        font-weight: 600;
+      }
+      .review-content{
+        font-style: italic;
+        margin-top: 5px;
+      }
+      .review-date{
+        font-size: .9em;
+      }
+    }
+  }
+  .favorite-button{
+    font-weight: 600;
+    color: $primary-red;
+    border: 2px solid $primary-red;
+    width: 100%;
+    &.active, &:hover{
+      color: $palewhite;
+      background-color: $primary-red;
+    }
+    &.active:hover{
+      color: $primary-red;
+      background-color: white;
+    }
+    i{
+      margin-right: 10px;
+    }
+  }
+  form{
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    label{
+      font-size: .9rem;
+    }
+    button{
+      margin-top: 10px;
+      align-self: end;
+    }
+  }
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+input:disabled, textarea:disabled{
+  background-color: #cfcfcf;
+  cursor: not-allowed;
+}
+
+.offline-warning{
+  font-size: .9em;
+  color: #454549;
 }

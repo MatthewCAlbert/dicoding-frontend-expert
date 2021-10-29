@@ -3,12 +3,10 @@ import UrlParser from '../../routes/url-parser';
 const OtherPage = {
   async render() {
     return `
-      <section class="section-first section section-normalized">
-        <div class="section-inner">
-          <h1>Hello World</h1>
-        </div>
-      </section>
-      <loading-indicator loading></loading-indicator>
+      <app-section first-no-bg center>
+        <loading-indicator loading></loading-indicator>
+        <warning-indicator>Sedih</warning-indicator>
+      </app-section>
     `;
   },
   
