@@ -6,6 +6,11 @@ const DrawerInitiator = {
       this._toggleDrawer(event, drawer, onClose, onOpen);
     };
     button.addEventListener('click', btnEvent);
+    drawer.querySelectorAll('a')?.forEach((link) => {
+      link.addEventListener('click', () => {
+        this._closeDrawer(null, drawer, onClose);
+      });
+    });
 
     return {
       isActive: () => this._isActive(drawer),
