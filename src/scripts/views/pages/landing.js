@@ -13,7 +13,7 @@ const LandingPage = {
                         <option value="">All Location</option>
                       </select>
                     </div>
-                    <button class="btn homepage-hero-searchbar-button">
+                    <button aria-label="Search Button" class="btn homepage-hero-searchbar-button">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>

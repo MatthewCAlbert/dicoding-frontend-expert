@@ -15,7 +15,7 @@ class FavoriteButton extends HTMLElement {
 
   render() {
     this.innerHTML = !this._isLongVersion ? `
-      <button class="btn restaurant-item-like-button"><i class="${this._isFavorite ? 'fas' : 'far'} fa-heart"></i></button>
+      <button aria-label="Toggle Favorite" class="btn restaurant-item-like-button"><i class="${this._isFavorite ? 'fas' : 'far'} fa-heart"></i></button>
     ` : `
       <button class="btn favorite-button ${this._isFavorite ? 'active' : ''}"><i class="${this._isFavorite ? 'fas' : 'far'} fa-heart"></i> <span>${this._isFavorite ? this._isFavoriteSentence?.[1] : this._isFavoriteSentence?.[0]}</span></button>
     `;

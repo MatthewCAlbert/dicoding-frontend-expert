@@ -40,7 +40,7 @@ class DefaultLayout extends BaseLayout {
                 </div>
                 <nav>
                   <div class="mobile-nav">
-                    <button class="btn mobile-nav-toggler"><i class="fas fa-bars"></i></button>
+                    <button aria-label="Navigation Menu Toggler" class="btn mobile-nav-toggler"><i class="fas fa-bars"></i></button>
                   </div>
                   <div class="nav-wrapper">
                     <a href="/#">HOME</a>
@@ -54,7 +54,7 @@ class DefaultLayout extends BaseLayout {
 
         </main>
         <div class="scroll-up-btn-wrapper">
-          <button class="btn scroll-up-btn"><i class="fas fa-chevron-up"></i></button>
+          <button aria-label="Go to Top" class="btn scroll-up-btn"><i class="fas fa-chevron-up"></i></button>
         </div>
         <footer class="footer">
             <div class="footer-inner">

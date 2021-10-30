@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server ./dist",
+    "start": "http-server ./dist -p 8000",
     "dev": "npm run start-dev",
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
@@ -40,6 +40,7 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.0.9",
+    "webpack-pwa-manifest": "^4.3.0",
     "whatwg-fetch": "^3.2.0",
     "workbox-webpack-plugin": "^6.3.0"
   },

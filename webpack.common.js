@@ -4,6 +4,7 @@ const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const path = require("path");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const WebpackPwaManifest = require('webpack-pwa-manifest')
 
 const ASSET_PATH = process.env.ASSET_PATH || "/";
 
@@ -56,11 +57,38 @@ module.exports = {
           to: path.resolve(__dirname, "dist/"),
         },
       ],
-    })
-    , 
+    }),
+    new WebpackPwaManifest({
+      filename: "manifest.json",
+      fingerprints: false,
+      name: "GeoCulinary",
+      short_name: "GeoCulinary",
+      description: "One Stop Culinary Catalogue",
+      start_url: "/",
+      inject: true,
+      ios: true,
+      display: "standalone",
+      background_color: "#f5f6fa",
+      theme_color: "#e94040",
+      icons: [
+        {
+          src: path.resolve(__dirname, "src/public/images/icon-512.png"),
+          destination: path.join('icons'),
+          sizes: [96, 128, 192, 256, 384, 512],
+          ios: true
+        },
+        {
+          src: path.resolve(__dirname, "src/public/images/icon-512.png"),
+          size: '512x512',
+          purpose: 'maskable',
+          destination: path.join('icons', 'ios'),
+          ios: 'startup'
+        }
+      ]
+    }),
     new WorkboxWebpackPlugin.InjectManifest({
       swSrc: "./src/scripts/sw.js",
       swDest: "sw.js"
-    })
+    }),
   ],
 };
