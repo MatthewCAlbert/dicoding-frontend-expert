@@ -3,8 +3,12 @@ const fs = require('fs');
 const path = require('path');
  
 const target = path.resolve('src/public/images');
+const dist = path.resolve('dist');
 const destination = path.resolve('dist/images');
  
+if (!fs.existsSync(dist)) {
+fs.mkdirSync(dist);
+}
 if (!fs.existsSync(destination)) {
 fs.mkdirSync(destination);
 }
