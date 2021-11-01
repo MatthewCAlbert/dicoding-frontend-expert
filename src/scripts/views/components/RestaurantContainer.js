@@ -40,9 +40,9 @@ class RestaurantContainer extends HTMLElement {
     <restaurant-card-skeleton></restaurant-card-skeleton>
     `;
 
-    if (this._query?.value !== q?.value || !this?.fetched) {
+    if (this._query?.value !== q?.value || this._query?.city !== q?.city || !this?.fetched) {
       this._fetched = true;
-      this.fetchData(q?.value || '').then(() => {
+      this.fetchData(this._query?.value || '').then(() => {
         this.renderResult(this._restaurantData);
       });
     } else this.renderResult(this._restaurantData);

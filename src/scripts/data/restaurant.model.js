@@ -14,7 +14,7 @@ const RestaurantModel = {
       return;
     }
 
-    return (await dbPromise).get(OBJECT_STORE_NAME, id);
+    return (await dbPromise).get(OBJECT_STORE_NAME, String(id));
   },
   async getAllRestaurant() {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
@@ -31,17 +31,24 @@ const RestaurantModel = {
     if (!restaurantFinal.hasOwnProperty('favorite')) {
       restaurantFinal = { ...restaurantFinal, favorite: false };
     }
+
+    restaurantFinal = { ...restaurantFinal, id: String(restaurant.id) };
     
     return (await dbPromise).put(OBJECT_STORE_NAME, restaurantFinal);
   },
   async removeRestaurant(id) {
-    return (await dbPromise).delete(OBJECT_STORE_NAME, id);
+    return (await dbPromise).delete(OBJECT_STORE_NAME, String(id));
+  },
+  async resetAll() {
+    return (await this.getAllRestaurant()).forEach(async (restaurant) => {
+      await this.removeRestaurant(restaurant.id);
+    });
   },
   async getAllFavoriteRestaurant() {
     return (await this.getAllRestaurant()).filter((restaurant) => restaurant?.favorite);
   },
   async setRestaurantFavoriteStatus(id, isFavorited) {
-    const restaurant = await this.getRestaurant(id);
+    const restaurant = await this.getRestaurant(String(id));
     if (restaurant) {
       return (await dbPromise).put(OBJECT_STORE_NAME, {
         ...restaurant, 

@@ -17,13 +17,13 @@
 - ESLint
 
 ## Bugs 🔥 
-- [ ] Lighthouse able
+- [x] Lighthouse able
 - [x] Precache Manifest the right files, including webp.
+- [x] Int. Test: Button Click Delay
 
 ## TODO
-- [ ] Seperation of Concern (View-Presenter)
-- [ ] Integration Test (Like/Dislike) (Positive + Negative)
-- [ ] E2E Test (Like/Dislike) + (Add Review)
+- [x] Integration Test (Like/Dislike) (Positive + Negative)
+- [x] E2E Test (Like/Dislike) + (Add Review)
 - [x] Skeleton (optional)
 - [x] Deployment
 

@@ -100,7 +100,7 @@ const RestaurantDetail = {
               <label for="review-message">Review</label>
               <textarea id="review-message" class="form-control" class="font-control" rows="4" required></textarea>
             </div>
-            <button class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp; Add New Review</button>
+            <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i>&nbsp; Add New Review</button>
           </div>
         </form>
       `;
@@ -133,7 +133,7 @@ const RestaurantDetail = {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = e.target.querySelector('#name');
-      const review = e.target.querySelector('#review');
+      const review = e.target.querySelector('#review-message');
       const reviewData = {
         id: restaurantId,
         name: name.value,

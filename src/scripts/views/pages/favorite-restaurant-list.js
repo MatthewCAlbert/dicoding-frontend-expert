@@ -23,7 +23,7 @@ const FavoriteRestaurantList = {
       `)?.join('');
     } else {
       document.querySelector('.restaurant-items-container').innerHTML = `
-      <div class="text-center">
+      <div class="text-center not-found">
         <p>Oops, it seems you don't have any favorite restaurant yet.</p>
         <a href="/#" class="btn btn-primary">Find your Favorites</a>
       </div>
