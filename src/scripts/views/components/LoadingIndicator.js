@@ -12,7 +12,7 @@ class LoadingIndicator extends HTMLElement {
   render() {
     this.innerHTML = `
       <div center class="loading-container">
-        <img src="/images/loading.gif" width="128" alt="Loading animation"/>
+        <div class="loader"></div>
         <div class="loading-container-title d-flex align-items-center">
           <span>Loading </span>
         </div>

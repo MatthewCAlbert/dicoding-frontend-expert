@@ -15,9 +15,9 @@ const routes = {
   '/favorite': {
     content: FavoriteRestaurantList,
   }, // favorite page
-  // '/testing': {
-  //   content: OtherPage,
-  // },
+  '/testing': {
+    content: OtherPage,
+  },
 };
 
 export default routes;

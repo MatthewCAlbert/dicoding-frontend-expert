@@ -23,6 +23,29 @@ img {
   display: block;
 }
 
+picture{
+  width: 100%;
+}
+
+lazy-image{
+  picture{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    & > *{
+      min-width: 100%;
+      display: block;
+      position: absolute;
+    }
+  }
+  &.mw-100 picture > *{
+    max-width: 100%;
+  }
+}
+
 @import "./layouts";
 @import "./utils";
 @import "./landinghero";
@@ -126,9 +149,14 @@ img {
     height: 100%;
     max-height: 400px;
     overflow: hidden;
-    position: relative;
     display: flex;
     align-items: center;
+    picture{
+      display: block;
+      & > *{
+        position: relative;
+      }
+    }
   }
   &-head{
     .marker{
@@ -139,7 +167,12 @@ img {
     margin-top: 10px;
     flex-direction: column;
     & > div:first-child{
-      margin: 10px 0;
+      margin: 0 0 20px 0;
+      align-self: flex-start;
+      @include breakpoint-min($breakpoint-sm){
+        margin: 0;
+        align-self: center;
+      }
     }
     @include breakpoint-min($breakpoint-sm){
       flex-direction: row;
@@ -231,7 +264,19 @@ img {
     width: 100%;
     max-width: 700px;
     display: flex;
-    flex-direction: column;
+    background-color: antiquewhite;
+    justify-content: center;
+    padding: 0 30px;
+    padding-bottom: 25px;
+    border-radius: 10px;
+    margin-top: 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
+    & > div{
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+    }
     label{
       font-size: .9rem;
     }

@@ -11,6 +11,10 @@ export function formatNumber(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
+export function isExternalUrl(url) {
+  return url.match(/^(http)|^(\/\/)/i);
+}
+
 export function padNumber(x, size) {
   let num = x.toString();
   while (num.length < size) num = `0${num}`;

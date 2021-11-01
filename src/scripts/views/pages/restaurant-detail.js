@@ -19,6 +19,8 @@ const RestaurantDetail = {
       <div class="review-content">"${el?.review}"</div>
     </div>
     `))?.join('') || '<span><i>No review yet, be the first to add a review!</i></span>';
+
+    document.querySelector('.review-count').innerHTML = reviews?.length || 0;
   },
   
   async afterRender() {
@@ -54,14 +56,15 @@ const RestaurantDetail = {
           <div class="restaurant-detail-category-container">
             ${restaurantDetail?.categories?.map((el) => (`<div>${el?.name}</div>`))?.join('') || ''}
           </div>
-          <div>
+          <div class="d-flex">
+            <a class="btn btn-primary" data-link="reviews">Review</a>&nbsp;
             <favorite-button target-id="${restaurantDetail?.id}" favorite="${restaurantDetail?.favorite ? 1 : 0}" long></favorite-button>
           </div>
         </div>
 
         <p>${restaurantDetail?.description}</p>
         
-        <h2>Makanan</h2>
+        <h2>Foods</h2>
         <div class="restaurant-detail-menu-container">
           ${restaurantDetail?.menus?.foods?.map((el) => (`
           <div>
@@ -71,7 +74,7 @@ const RestaurantDetail = {
           `))?.join('') || 'Food not loaded'}
         </div>
 
-        <h2>Minuman</h2>
+        <h2>Drinks</h2>
         <div class="restaurant-detail-menu-container">
           ${restaurantDetail?.menus?.drinks?.map((el) => (`
           <div>
@@ -81,24 +84,33 @@ const RestaurantDetail = {
           `))?.join('') || 'Drink not loaded'}
         </div>
 
-        <h2>Reviews</h2>
-        <div class="restaurant-detail-review-container">
+        <h2>Reviews <small>(<span class="review-count"></span>)</small></h2>
+        <div class="restaurant-detail-review-container" id="reviews">
         </div>
 
-        <h2>Write Your Review</h2>
-        ${navigator?.onLine ? '' : '<p class="offline-warning">You are offline, your review will not be submitted until you\'re online.</p>'}
         <form id="review-form">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input id="name" type="text" class="form-control" required/>
+          <div>
+            <h2 class="text-center">Write Your Review</h2>
+            ${navigator?.onLine ? '' : '<p class="offline-warning">You are offline, your review will not be submitted until you\'re online.</p>'}
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input id="name" type="text" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="review-message">Review</label>
+              <textarea id="review-message" class="form-control" class="font-control" rows="4" required></textarea>
+            </div>
+            <button class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp; Add New Review</button>
           </div>
-          <div class="form-group">
-            <label for="review">Review</label>
-            <textarea id="review" class="form-control" class="font-control" rows="4" required></textarea>
-          </div>
-          <button class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp; Add New Review</button>
         </form>
       `;
+
+      document.querySelectorAll('a[data-link]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const tgt = e.target.getAttribute('data-link');
+          document.getElementById(tgt).scrollIntoView({ block: 'end', behavior: 'smooth' });
+        });
+      });
 
       this.renderReview(restaurantDetail?.customerReviews || []);
     } else {

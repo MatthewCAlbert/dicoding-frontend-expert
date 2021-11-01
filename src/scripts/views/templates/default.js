@@ -36,7 +36,7 @@ class DefaultLayout extends BaseLayout {
         <header class="header">
             <div class="header-inner">
                 <div class="header-logo">
-                    <img src="/images/logo.png" alt="logo"/>
+                    <img src="/images/logo.png" alt="logo" height="40px"/>
                 </div>
                 <nav>
                   <div class="mobile-nav">

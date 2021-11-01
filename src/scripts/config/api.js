@@ -1,8 +1,11 @@
 // import CONFIG from "./config";
+// const controller = new AbortController();
+// const timeoutId = setTimeout(() => controller.abort(), 5000);
 
 export const apiProvider = (key = '', options = {}) => {
   const finalOptions = {
     ...options, 
+    // signal: controller.signal,
   };
 
   const apiObject = {

@@ -227,3 +227,19 @@ select {
   height: $header-height;
   background-color: $primary-red;
 }
+
+.loader {
+  border: 8px solid white; /* Light grey */
+  border-top: 8px solid $primary-red; /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

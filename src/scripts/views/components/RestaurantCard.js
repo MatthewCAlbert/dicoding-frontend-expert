@@ -25,7 +25,9 @@ class RestaurantCard extends HTMLElement {
       <div class="restaurant-item">
           <div class="restaurant-item-head">
               <div class="restaurant-item-label">${this._location}</div>
-              <a href="/#/restaurant/${this._id}" style="background-image: url('${this._img}');" aria-label="${this._title}"></a>
+              <a href="/#/restaurant/${this._id}">
+                <lazy-image class="mw-100" data-src="${this._img}" alt="${this._title}"></lazy-image>
+              </a>
               ${!this._noFav ? `<favorite-button target-id="${this._id}" favorite="${this._favorite ? 1 : 0}"></favorite-button>` : ''}
           </div>
           <div class="restaurant-item-content">

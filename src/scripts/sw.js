@@ -1,28 +1,42 @@
 import 'regenerator-runtime';
+
 import { clientsClaim } from 'workbox-core';
-import { ExpirationPlugin } from 'workbox-expiration';
+// import { ExpirationPlugin } from 'workbox-expiration';
 import {
   NetworkOnly, NetworkFirst, CacheFirst, StaleWhileRevalidate, 
 } from 'workbox-strategies';
 import { registerRoute, setDefaultHandler, setCatchHandler } from 'workbox-routing';
-import { matchPrecache, precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
+import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import CONFIG from './config/config';
 
-self.skipWaiting();
 clientsClaim();
 
 // must include following lines when using inject manifest module from workbox
 // https://developers.google.com/web/tools/workbox/guides/precache-files/workbox-build#add_an_injection_point
 const WB_MANIFEST = self.__WB_MANIFEST;
-const revisionVer = 2;
+const revisionVer = 3;
 // Precache fallback route and image
 WB_MANIFEST.push({
   url: '/',
   revision: revisionVer,
 });
-precacheAndRoute(WB_MANIFEST);
-cleanupOutdatedCaches();
+
+const precache = [...WB_MANIFEST];
+
+WB_MANIFEST.forEach((precacheRoute) => {
+  if (precacheRoute.url.match(/images\/[\w\d\-.]+\.(jpe?g|png)/i)) {
+    const ext = precacheRoute.url.match(/\.(jpe?g|png)/i)?.[0];
+    precache.push(
+      { url: precacheRoute.url.replace(ext, `-small${ext}`), revision: revisionVer },
+      { url: precacheRoute.url.replace(ext, `-large${ext}`), revision: revisionVer },
+      { url: precacheRoute.url.replace(ext, '-small.webp'), revision: revisionVer },
+      { url: precacheRoute.url.replace(ext, '-large.webp'), revision: revisionVer },
+    );
+  }
+});
+
+precacheAndRoute(precache);
 
 // Cache App Shell
 registerRoute(
@@ -87,3 +101,11 @@ registerRoute(
     ],
   }),
 );
+
+cleanupOutdatedCaches();
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});

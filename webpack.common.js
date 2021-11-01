@@ -1,10 +1,15 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
+const {InjectManifest} = require("workbox-webpack-plugin");
 const path = require("path");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackPwaManifest = require('webpack-pwa-manifest')
+
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
+const ImageminMozjpeg = require('imagemin-mozjpeg');
+const imageminPngquant = require('imagemin-pngquant');
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 
 const ASSET_PATH = process.env.ASSET_PATH || "/";
 
@@ -14,7 +19,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist", ASSET_PATH === "/" ? "" : ASSET_PATH),
-    filename: "static/bundle.js",
+    filename: "static/[name].bundle.js",
     publicPath: ASSET_PATH,
   },
   module: {
@@ -58,6 +63,28 @@ module.exports = {
         },
       ],
     }),
+    new ImageminWebpackPlugin({
+      plugins: [
+        ImageminMozjpeg({
+          quality: 50,
+          progressive: true,
+        }),
+        imageminPngquant({
+          quality: [0.3, 0.5],
+        }),
+      ],
+    }),
+    new ImageminWebpWebpackPlugin({
+      config: [
+        {
+          test: /images\/[\w\d\-\.]+\.(jpe?g|png)/,
+          options: {
+            quality: 50,
+          }
+        }
+      ],
+      overrideExtension: true,
+    }),
     new WebpackPwaManifest({
       filename: "manifest.json",
       fingerprints: false,
@@ -86,9 +113,9 @@ module.exports = {
         }
       ]
     }),
-    new WorkboxWebpackPlugin.InjectManifest({
+    new InjectManifest({
       swSrc: "./src/scripts/sw.js",
-      swDest: "sw.js"
+      swDest: "sw.js",
     }),
   ],
 };
