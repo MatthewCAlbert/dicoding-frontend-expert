@@ -5,6 +5,7 @@
 
 ## Info
 - This is for the third submission.
+- [PageSpeed Insight Quick Link](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fgeoculinary.matthewcalbert.com%2F&tab=mobile)
 
 ## Notice
 - Food switcher is turned off.
@@ -16,10 +17,10 @@
 - IndexedDB (idb library)
 - ESLint
 
-## Bugs 🔥 
-- [x] Lighthouse able
-- [x] Precache Manifest the right files, including webp.
-- [x] Int. Test: Button Click Delay
+## Getting Started
+    To develop don't forget to install all node modules.
+    
+    For development, you need to run "npm run build-image" first to generate all webp needed.
 
 ## TODO
 - [x] Integration Test (Like/Dislike) (Positive + Negative)
