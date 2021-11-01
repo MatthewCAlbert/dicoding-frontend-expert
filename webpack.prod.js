@@ -57,6 +57,9 @@ module.exports = merge(common, {
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: ['!**/images/**'],
     }),
-    // new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+      analyzerMode: 'static'
+    }),
   ]
 });
