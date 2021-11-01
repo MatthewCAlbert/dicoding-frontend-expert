@@ -28,7 +28,7 @@ class LazyImage extends HTMLElement {
 
   _renderLazyImg(src) {
     if (!this._noLazy) return `<img loading="lazy" class="lazyload" src="/images/placeholder.png" data-src="${src}" alt="${this._alt}" ${this._renderAttribute('width', this._width)}  ${this._renderAttribute('height', this._height)}/>`;
-    return `<img src="${src}" alt="${this._alt}" ${this._renderAttribute('width', this._width)}  ${this._renderAttribute('height', this._height)}/>`;
+    return `<img src="${src}" alt="${this._alt}" ${this._renderAttribute('width', this._width)} ${this._renderAttribute('height', this._height)}/>`;
   }
 
   _renderResizable() {

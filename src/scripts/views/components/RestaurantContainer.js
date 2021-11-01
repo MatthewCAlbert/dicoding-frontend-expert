@@ -33,7 +33,12 @@ class RestaurantContainer extends HTMLElement {
 
   queryListener(q = {}) {
     this._query = { ...this._query, ...q };
-    this.querySelector('.restaurant-items-container').innerHTML = '<loading-indicator></loading-indicator>';
+    this.querySelector('.restaurant-items-container').innerHTML = `
+    <restaurant-card-skeleton></restaurant-card-skeleton>
+    <restaurant-card-skeleton></restaurant-card-skeleton>
+    <restaurant-card-skeleton></restaurant-card-skeleton>
+    <restaurant-card-skeleton></restaurant-card-skeleton>
+    `;
 
     if (this._query?.value !== q?.value || !this?.fetched) {
       this._fetched = true;

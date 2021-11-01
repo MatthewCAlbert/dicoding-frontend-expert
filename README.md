@@ -24,7 +24,7 @@
 - [ ] Seperation of Concern (View-Presenter)
 - [ ] Integration Test (Like/Dislike) (Positive + Negative)
 - [ ] E2E Test (Like/Dislike) + (Add Review)
-- [ ] Skeleton (optional)
+- [x] Skeleton (optional)
 - [x] Deployment
 
 ## Helper
